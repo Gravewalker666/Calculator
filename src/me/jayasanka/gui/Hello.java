@@ -14,10 +14,15 @@ public class Hello extends Application{
 
     @Override
     public void start(Stage primaryStage){
-        VBox layout = new VBox();
+        VBox layout = new VBox(10);
+        HBox row = new HBox(10);
+        layout.getChildren().add(row);
 
         Button btn = new Button("Click");
-        layout.getChildren().add(btn);
+        row.getChildren().add(btn);
+
+        Button btn1 = new Button("Click1");
+        row.getChildren().add(btn1);
 
 
 
