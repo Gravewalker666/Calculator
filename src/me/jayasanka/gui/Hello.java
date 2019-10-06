@@ -15,11 +15,14 @@ public class Hello extends Application{
     @Override
     public void start(Stage primaryStage){
         primaryStage.setTitle("Hello kohomada koheda inne");
-
         VBox layout = new VBox();
 
-        Scene scene = new Scene(layout, 300, 400);
+        Button btn = new Button("Click");
+        layout.getChildren().add(btn);
 
+
+
+        Scene scene = new Scene(layout, 300, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
