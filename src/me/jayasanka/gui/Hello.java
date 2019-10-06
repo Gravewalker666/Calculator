@@ -14,7 +14,6 @@ public class Hello extends Application{
 
     @Override
     public void start(Stage primaryStage){
-        primaryStage.setTitle("Hello kohomada koheda inne");
         VBox layout = new VBox();
 
         Button btn = new Button("Click");
@@ -23,6 +22,7 @@ public class Hello extends Application{
 
 
         Scene scene = new Scene(layout, 300, 400);
+        primaryStage.setTitle("Hello kohomada koheda inne");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
