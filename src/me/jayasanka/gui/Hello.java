@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Hello extends Application{
     public static void main(String[] args) {
         launch(args);
@@ -22,10 +24,15 @@ public class Hello extends Application{
         Button btn = new Button("Click");
         row.getChildren().add(btn);
 
-        Button btn1 = new Button("Click1");
+        Button btn1 = new Button("Click count");
         row.getChildren().add(btn1);
 
-
+        final AtomicInteger count = new AtomicInteger(0);
+        btn.setOnAction(e->{
+            count.getAndAdd(1);
+            System.out.println("clicked");
+            btn1.setText(count.toString());
+        });
 
         Scene scene = new Scene(layout, 300, 400);
         primaryStage.setTitle("Hello kohomada koheda inne");
