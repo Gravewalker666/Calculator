@@ -1,0 +1,22 @@
+Button{
+    -fx-font-size: 30px;
+    -fx-padding: 10;
+    -fx-min-width: 75;
+    -fx-min-height: 75;
+}
+TextField{
+    -fx-min-height: 50;
+    -fx-font-size: 30px;
+    -fx-text-alignment: right;
+}
+Label{
+    -fx-min-height: 40;
+}
+#EqualButton{
+    -fx-background-color: #039dfc;
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
+    -fx-max-height: 75;
+    -fx-padding: 5;
+    -fx-border-radius: 1000;
+}
