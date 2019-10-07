@@ -2,9 +2,12 @@ package me.jayasanka.gui;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -24,14 +27,16 @@ public class Hello extends Application{
         Button btn = new Button("Click");
         row.getChildren().add(btn);
 
-        Button btn1 = new Button("Click count");
-        row.getChildren().add(btn1);
+
+        TextField text = new TextField();
+        text.setText("click count");
+        row.getChildren().add(text);
 
         final AtomicInteger count = new AtomicInteger(0);
         btn.setOnAction(e->{
             count.getAndAdd(1);
             System.out.println("clicked");
-            btn1.setText(count.toString());
+            System.out.println(text.getText());
         });
 
         Scene scene = new Scene(layout, 300, 400);
