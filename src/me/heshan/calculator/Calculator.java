@@ -10,6 +10,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+import java.util.concurrent.atomic.AtomicReference;
+
 public class Calculator extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -17,11 +22,12 @@ public class Calculator extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //GUI buttons
         VBox layout = new VBox();
 
         Label calculation = new Label();
 
-        TextField input = new TextField("0");
+        TextField input = new TextField();
 
         HBox numberRow0 = new HBox();
         Button seven = new Button("7");
@@ -56,6 +62,83 @@ public class Calculator extends Application {
         numberRow3.getChildren().addAll(zero, dot, submit, add);
         numberRow3.setAlignment(Pos.TOP_CENTER);
 
+        //Calculation formula
+
+        //number input buttons
+        one.setOnAction(e->{
+            input.setText(input.getText()+"1");
+        });
+        two.setOnAction(e->{
+            input.setText(input.getText()+"2");
+        });
+        three.setOnAction(e->{
+            input.setText(input.getText()+"3");
+        });
+        four.setOnAction(e->{
+            input.setText(input.getText()+"4");
+        });
+        five.setOnAction(e->{
+            input.setText(input.getText()+"5");
+        });
+        six.setOnAction(e->{
+            input.setText(input.getText()+"6");
+        });
+        seven.setOnAction(e->{
+            input.setText(input.getText()+"7");
+        });
+        eight.setOnAction(e->{
+            input.setText(input.getText()+"8");
+        });
+        nine.setOnAction(e->{
+            input.setText(input.getText()+"9");
+        });
+        zero.setOnAction(e->{
+            input.setText(input.getText()+"0");
+        });
+        dot.setOnAction(e->{
+            input.setText(input.getText()+".");
+        });
+
+        //Math function buttons
+
+        ScriptEngineManager manager = new ScriptEngineManager();
+        ScriptEngine engine = manager.getEngineByName("js");
+
+        AtomicReference<String> temp = new AtomicReference<String>();
+
+        add.setOnAction(e->{
+            calculation.setText(calculation.getText()+input.getText() + "+");
+            temp.set(calculation.getText()+input.getText() + "+");
+            input.clear();
+        });
+        min.setOnAction(e->{
+            calculation.setText(calculation.getText()+input.getText() + "-");
+            temp.set(calculation.getText()+input.getText() + "-");
+            input.clear();
+        });
+        multi.setOnAction(e->{
+            calculation.setText(calculation.getText()+input.getText() + "*");
+            temp.set(calculation.getText()+input.getText() + "*");
+            input.clear();
+        });
+        dev.setOnAction(e->{
+            calculation.setText(calculation.getText()+input.getText() + "/");
+            temp.set(calculation.getText());
+            input.clear();
+        });
+        submit.setOnAction(e->{
+            calculation.setText(calculation.getText()+input.getText());
+            temp.set(calculation.getText());
+            try {
+                Object result = engine.eval(temp.get());
+                input.setText(result.toString());
+            } catch (ScriptException ex) {
+                ex.printStackTrace();
+            }
+            calculation.setText("");
+        });
+
+
 
         layout.getChildren().addAll(calculation, input , numberRow0, numberRow1, numberRow2, numberRow3);
         Scene scene = new Scene(layout, 300, 400);
@@ -65,3 +148,4 @@ public class Calculator extends Application {
         primaryStage.show();
     }
 }
+

@@ -10,6 +10,7 @@ TextField{
     -fx-text-alignment: right;
 }
 Label{
+    -fx-font-size: 17px;
     -fx-min-height: 40;
 }
 #EqualButton{
